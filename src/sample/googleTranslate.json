@@ -1,0 +1,91 @@
+{
+    "sentences": [
+        {
+            "trans": "Bài kiểm tra",
+            "orig": "test",
+            "backend": 10
+        }
+    ],
+    "dict": [
+        {
+            "pos": "noun",
+            "terms": [
+                "cuộc thi",
+                "sự khảo thí",
+                "sự thử",
+                "thí nghiệm"
+            ],
+            "entry": [
+                {
+                    "word": "cuộc thi",
+                    "reverse_translation": [
+                        "contest",
+                        "competition",
+                        "test"
+                    ]
+                },
+                {
+                    "word": "sự khảo thí",
+                    "reverse_translation": [
+                        "test"
+                    ]
+                },
+                {
+                    "word": "sự thử",
+                    "reverse_translation": [
+                        "test",
+                        "try",
+                        "attempt",
+                        "essay",
+                        "endeavor",
+                        "ordeal"
+                    ]
+                },
+                {
+                    "word": "thí nghiệm",
+                    "reverse_translation": [
+                        "experiment",
+                        "test",
+                        "try",
+                        "trying"
+                    ]
+                }
+            ],
+            "base_form": "test",
+            "pos_enum": 1
+        },
+        {
+            "pos": "verb",
+            "terms": [
+                "thí nghiệm",
+                "thử"
+            ],
+            "entry": [
+                {
+                    "word": "thí nghiệm",
+                    "reverse_translation": [
+                        "experiment",
+                        "test",
+                        "experience",
+                        "try",
+                        "experimentalise",
+                        "prove"
+                    ]
+                },
+                {
+                    "word": "thử",
+                    "reverse_translation": [
+                        "try",
+                        "test",
+                        "attempt",
+                        "sample"
+                    ]
+                }
+            ],
+            "base_form": "test",
+            "pos_enum": 2
+        }
+    ],
+    "src": "en",
+    "spell": {}
+}

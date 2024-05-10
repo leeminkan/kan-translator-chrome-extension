@@ -63,6 +63,18 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@tanstack/query-core@5.35.4":
+  version "5.35.4"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.35.4.tgz#bea9b817e2331adacf3210bdb903dbe31c4b7539"
+  integrity sha512-C8hh/I5KCnkoLLAYVNrIBINzu7LF8bSg3SkhEjC50lhkzmewIOYD6bCFQgJffB03fKZtD0TCvfHq8QpMHfCmNA==
+
+"@tanstack/react-query@^5.35.4":
+  version "5.35.4"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.35.4.tgz#9529ac02a4589f44dda7b9003cb6d85b1a60e375"
+  integrity sha512-CzxSrYvCt7iumYQLInAss6aW0I/1IeeuwK/b5s0WMEXlj9unZmZk2ZQAkhJCo/1IF+VLqbQgbfygyPSdx24bxQ==
+  dependencies:
+    "@tanstack/query-core" "5.35.4"
+
 "@types/chrome@^0.0.188":
   version "0.0.188"
   resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.188.tgz#ed73feca28a6d84f796ec50a2dbe7e41510175b3"

@@ -27,6 +27,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.35.4",
     "autoprefixer": "^10.4.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",

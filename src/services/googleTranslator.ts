@@ -94,6 +94,7 @@ export class GoogleTranslator {
 
     const json = await this._getAsync(url);
     return {
+      sourceText,
       translatedText: json.sentences.reduce((acc, cur) => acc + cur.trans, ""),
       sourceLanguageCode: json.src,
       dictionary: json.dict?.map((d) => ({
