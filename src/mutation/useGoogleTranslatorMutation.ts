@@ -8,7 +8,7 @@ import {
   TARGET_LANGUAGE_CODE,
 } from "@/src/constants/googleTranslator.constant";
 
-export const useTranslatorMutation = () => {
+export const useGoogleTranslatorMutation = () => {
   return useMutation({
     mutationFn: (variable: { sourceText: string }) =>
       googleTranslator.translateAsync(

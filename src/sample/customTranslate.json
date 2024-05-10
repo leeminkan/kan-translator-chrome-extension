@@ -1,0 +1,493 @@
+{
+    "data": {
+        "word": "test",
+        "pos": [
+            "noun",
+            "verb",
+            "noun",
+            "verb",
+            "noun",
+            "verb"
+        ],
+        "verbs": [
+            {
+                "type": "Singular",
+                "text": "test"
+            },
+            {
+                "type": "Plural",
+                "text": "tests"
+            },
+            {
+                "type": "Plain form",
+                "text": "test"
+            },
+            {
+                "type": "Third-person singular",
+                "text": "tests"
+            },
+            {
+                "type": "Past tense",
+                "text": "tested"
+            },
+            {
+                "type": "Past participle",
+                "text": "tested"
+            },
+            {
+                "type": "Present participle",
+                "text": "testing"
+            }
+        ],
+        "pronunciation": [
+            {
+                "lang": "us",
+                "url": "https://dictionary.cambridge.org/us/media/english/us_pron/t/tes/test_/test.mp3",
+                "pron": "/test/"
+            },
+            {
+                "lang": "uk",
+                "url": "https://dictionary.cambridge.org/us/media/english/uk_pron/u/ukt/ukter/ukterri013.mp3",
+                "pron": "/test/"
+            }
+        ],
+        "definition": [
+            {
+                "id": 0,
+                "text": "a way of discovering, by questions or practical activities, what someone knows, or what someone or something can do or is like: ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 0,
+                        "text": "The class are taking/having/doing a spelling test today.",
+                        "translation": ""
+                    },
+                    {
+                        "id": 1,
+                        "text": "She had to take/do an aptitude test before she got the job.",
+                        "translation": ""
+                    }
+                ]
+            },
+            {
+                "id": 1,
+                "text": "a medical examination of part of your body in order to find out how healthy it is or what is happening with it: ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 2,
+                        "text": "a blood/urine test",
+                        "translation": ""
+                    },
+                    {
+                        "id": 3,
+                        "text": "an eye test",
+                        "translation": ""
+                    },
+                    {
+                        "id": 4,
+                        "text": "a pregnancy test",
+                        "translation": ""
+                    },
+                    {
+                        "id": 5,
+                        "text": "The doctors have done some tests to try and find out what's wrong with her.",
+                        "translation": ""
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "text": "an act of using something to find out if it is working correctly or how effective it is: ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 6,
+                        "text": "The new missiles are currently undergoing tests.",
+                        "translation": ""
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "text": "a situation that shows how good something is: ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 7,
+                        "text": "Driving on that icy road was a real test of my skill.",
+                        "translation": ""
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "text": "a \n        \n         test match  : ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 8,
+                        "text": "Australia won the test by 197 runs.",
+                        "translation": ""
+                    }
+                ]
+            },
+            {
+                "id": 5,
+                "text": "to put something through a process in order to discover if it is safe, works correctly, etc., or if something is present in it: ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 9,
+                        "text": "The manufacturers are currently testing the new engine.",
+                        "translation": ""
+                    },
+                    {
+                        "id": 10,
+                        "text": "They tested her blood for signs of the infection.",
+                        "translation": ""
+                    }
+                ]
+            },
+            {
+                "id": 6,
+                "text": "to do a medical examination of part of someone's body or of a particular physical ability: ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 11,
+                        "text": "This exercise tests your reflexes.",
+                        "translation": ""
+                    },
+                    {
+                        "id": 12,
+                        "text": "I had my eyes tested.",
+                        "translation": ""
+                    }
+                ]
+            },
+            {
+                "id": 7,
+                "text": "to produce a particular result when tested, for example in a medical or other scientific test: ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 13,
+                        "text": "When they were given a test for HIV, none of the patients tested positive for it.",
+                        "translation": ""
+                    },
+                    {
+                        "id": 14,
+                        "text": "The cyclist tested negative for banned substances throughout his career.",
+                        "translation": ""
+                    },
+                    {
+                        "id": 15,
+                        "text": "The houses tested high for radon gas. ",
+                        "translation": ""
+                    },
+                    {
+                        "id": 16,
+                        "text": "During the busy summer beach season, when thousands of people crowd the beach, the water has always tested clean.",
+                        "translation": ""
+                    }
+                ]
+            },
+            {
+                "id": 8,
+                "text": "to give someone a set of questions, in order to measure their knowledge or ability: ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 17,
+                        "text": "Will you test me on the chemistry I've been learning?",
+                        "translation": ""
+                    },
+                    {
+                        "id": 18,
+                        "text": "Students are tested frequently.",
+                        "translation": ""
+                    }
+                ]
+            },
+            {
+                "id": 9,
+                "text": "to perform in a particular way when answering a set of questions: ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 19,
+                        "text": "Nearly 90 percent of the school's eighth-graders tested proficient in math and reading last year.",
+                        "translation": ""
+                    },
+                    {
+                        "id": 20,
+                        "text": "He tested well and was put on the waiting list for a scholarship.",
+                        "translation": ""
+                    }
+                ]
+            },
+            {
+                "id": 10,
+                "text": "to be judged in a particular way when used somewhere or shown to someone: ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 21,
+                        "text": "The show tested well with viewers of all ages.",
+                        "translation": ""
+                    },
+                    {
+                        "id": 22,
+                        "text": "He said that none of the proposed voting systems had tested well in Ohio.",
+                        "translation": ""
+                    },
+                    {
+                        "id": 23,
+                        "text": "The original script was abandoned when it tested badly.",
+                        "translation": ""
+                    }
+                ]
+            },
+            {
+                "id": 11,
+                "text": "If a situation tests someone, it proves how good, strong, etc. they are: ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 24,
+                        "text": "You will face a series of physical challenges that will test even the fittest and most determined.",
+                        "translation": ""
+                    },
+                    {
+                        "id": 25,
+                        "text": "That lecture really tested my powers of endurance, it was so boring.",
+                        "translation": ""
+                    }
+                ]
+            },
+            {
+                "id": 12,
+                "text": "a set of questions or practical activities that show what someone knows or what someone or something can do or is like: ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 26,
+                        "text": "a spelling test",
+                        "translation": ""
+                    }
+                ]
+            },
+            {
+                "id": 13,
+                "text": "A test is also a medical examination of part of your body or of something from your body: ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 27,
+                        "text": "an eye test",
+                        "translation": ""
+                    },
+                    {
+                        "id": 28,
+                        "text": "a DNA test",
+                        "translation": ""
+                    }
+                ]
+            },
+            {
+                "id": 14,
+                "text": "A test is also an act of using something to find out whether it is working correctly or how effective it is: ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 29,
+                        "text": "a safety test",
+                        "translation": ""
+                    }
+                ]
+            },
+            {
+                "id": 15,
+                "text": "to use a set of questions or practical activities to measure someone's knowledge and ability: ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 30,
+                        "text": "Multiple-choice questions tested the students’ knowledge.",
+                        "translation": ""
+                    }
+                ]
+            },
+            {
+                "id": 16,
+                "text": "To test something is to use it in order to find out whether it is working correctly or how effective it is: ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 31,
+                        "text": "We test every component we make.",
+                        "translation": ""
+                    }
+                ]
+            },
+            {
+                "id": 17,
+                "text": "To test people or things can also be to present them with a situation which shows how good they are at dealing with difficulties: ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 32,
+                        "text": "His generation was tested by a world war.",
+                        "translation": ""
+                    }
+                ]
+            },
+            {
+                "id": 18,
+                "text": "a set of questions or practical activities that are used to measure what someone or something can do or how much someone knows about something: ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 33,
+                        "text": "The tests showed I had excellent spatial awareness.",
+                        "translation": ""
+                    },
+                    {
+                        "id": 34,
+                        "text": "We have to take a test to get a real-estate broker's license.",
+                        "translation": ""
+                    },
+                    {
+                        "id": 35,
+                        "text": "New agents have to complete an online training course and pass a test.",
+                        "translation": ""
+                    }
+                ]
+            },
+            {
+                "id": 19,
+                "text": "an act of doing something in order to discover if something is safe, works correctly, etc., or if something is present: ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 36,
+                        "text": "The minivans all failed the safety tests.",
+                        "translation": ""
+                    },
+                    {
+                        "id": 37,
+                        "text": "The material passed rigid tests for flammability.",
+                        "translation": ""
+                    },
+                    {
+                        "id": 38,
+                        "text": "The tests on the toys found that they had dangerously high lead levels.",
+                        "translation": ""
+                    },
+                    {
+                        "id": 39,
+                        "text": "If tests show infection, computer users can try anti-virus software.",
+                        "translation": ""
+                    }
+                ]
+            },
+            {
+                "id": 20,
+                "text": "a situation that shows how good, strong, etc. someone or something is: ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 40,
+                        "text": "The ultimate test of a successful negotiation is when the agreement reached is implemented to the satisfaction of both parties.",
+                        "translation": ""
+                    },
+                    {
+                        "id": 41,
+                        "text": "The true test of a CEO comes during difficult times.",
+                        "translation": ""
+                    }
+                ]
+            },
+            {
+                "id": 21,
+                "text": "to find out or show how good someone or something is: ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 42,
+                        "text": "This new project will really put her to the test.",
+                        "translation": ""
+                    }
+                ]
+            },
+            {
+                "id": 22,
+                "text": "to ask someone a set of questions or give them practical activities to do, in order to measure their knowledge or ability: ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 43,
+                        "text": "We will test your strength and stamina.",
+                        "translation": ""
+                    },
+                    {
+                        "id": 44,
+                        "text": "We will test new taxi drivers on how well they know their way around.",
+                        "translation": ""
+                    }
+                ]
+            },
+            {
+                "id": 23,
+                "text": "to do something in order to discover if something is safe, works correctly, etc., or if something is present: ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 45,
+                        "text": "We test every product numerous times before it ships.",
+                        "translation": ""
+                    },
+                    {
+                        "id": 46,
+                        "text": "The machine kept breaking down when I tested it.",
+                        "translation": ""
+                    },
+                    {
+                        "id": 47,
+                        "text": "The company is testing for gold in the deposits.",
+                        "translation": ""
+                    },
+                    {
+                        "id": 48,
+                        "text": "The drugs were first tested on animals.",
+                        "translation": ""
+                    },
+                    {
+                        "id": 49,
+                        "text": "He tested positive for the disease.",
+                        "translation": ""
+                    }
+                ]
+            },
+            {
+                "id": 24,
+                "text": "if a situation tests someone or something, it shows how good, strong, etc. they are: ",
+                "translation": "",
+                "example": [
+                    {
+                        "id": 50,
+                        "text": "The new chief executive will quickly get a chance to test his diplomatic skills.",
+                        "translation": ""
+                    },
+                    {
+                        "id": 51,
+                        "text": "Investors in British information technology stocks should prepare to have their nerve tested again.",
+                        "translation": ""
+                    }
+                ]
+            }
+        ]
+    },
+    "message": "OK!"
+}

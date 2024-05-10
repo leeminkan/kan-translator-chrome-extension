@@ -1,5 +1,11 @@
 "use strict";
 
+import { getAsync } from "./base.util";
+import {
+  GoogleTranslatorResponse,
+  GetSupportedLanguageResponse,
+} from "./googleTranslator.type";
+
 export class GoogleTranslator {
   _clientName = "gtx";
   _baseUrl = "https://translate.googleapis.com/translate_a";
@@ -28,7 +34,8 @@ export class GoogleTranslator {
     const toTitleCase = (name) =>
       name[0].toUpperCase() + name.substr(1).toLowerCase();
 
-    const json = await this._getAsync(url);
+    const json = await getAsync<GetSupportedLanguageResponse>(url);
+
     return {
       sourceLanguages: Object.entries(json.sl).map(([k, v]) => ({
         code: k,
@@ -92,7 +99,7 @@ export class GoogleTranslator {
     if (requests.synonyms) url += "&dt=ss"; // synonyms of source text, if it's one word
     if (requests.examples) url += "&dt=ex"; // examples
 
-    const json = await this._getAsync(url);
+    const json = await getAsync<GoogleTranslatorResponse>(url);
     return {
       sourceText,
       translatedText: json.sentences.reduce((acc, cur) => acc + cur.trans, ""),
@@ -105,22 +112,6 @@ export class GoogleTranslator {
         })),
       })),
     };
-  }
-
-  async _getAsync(url) {
-    let response = await fetch(url, {
-      referrerPolicy: "no-referrer",
-      credentials: "omit",
-    });
-
-    if (!response.ok) {
-      throw {
-        code: response.status,
-        message: response.statusText,
-      };
-    }
-
-    return await response.json();
   }
 }
 
