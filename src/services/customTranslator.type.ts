@@ -1,4 +1,4 @@
-interface Pronunciation {
+export interface Pronunciation {
   lang: string;
   url: string;
   pron: string;

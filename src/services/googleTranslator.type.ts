@@ -24,6 +24,19 @@ export interface GoogleTranslatorResponse {
   spell: Record<string, never>; // Assuming this is always an empty object
 }
 
+export interface GoogleTranslatorResult {
+  sourceText: string;
+  translatedText: string;
+  sourceLanguageCode: string;
+  dictionary?: {
+    partOfSpeech: string;
+    terms: {
+      word: string;
+      reverseTranslation: string[];
+    }[];
+  }[];
+}
+
 interface LanguageTranslations {
   [key: string]: string;
 }
