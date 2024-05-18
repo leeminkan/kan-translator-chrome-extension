@@ -35,7 +35,7 @@ export const TranslatePanel = ({ sourceText }) => {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === "s") {
+      if (e.metaKey && e.key === "s") {
         // quick save
         e.preventDefault();
         addNewWordFn();
