@@ -119,7 +119,7 @@ export function ContentScript() {
     showType && (
       <div
         id="content-script"
-        className="flex items-center justify-center"
+        className="flex items-center justify-center z-50"
         style={styleObject}
       >
         {showType === "panel" ? (

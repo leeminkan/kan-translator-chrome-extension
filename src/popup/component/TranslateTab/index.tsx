@@ -54,7 +54,7 @@ export const TranslateTab = () => {
         />
         {googleTranslatorMutation.isPending && <ResultSkeleton />}
         {googleTranslatorMutation.data && (
-          <div className="flex flex-col mt-2 px-2 py-2 bg-white gap-2">
+          <div className="flex flex-col mt-2 px-2 py-2 text-black bg-white gap-2">
             <h2 className="text-2xl">
               {googleTranslatorMutation.data.sourceText}
             </h2>
