@@ -1,4 +1,5 @@
 import { wordBankStorage } from "@/src/services/wordBankStorage";
+import { getTextSelection } from "@/src/services/popup.helper";
 
 export const queryKeys = {
   wordBank: {
@@ -19,5 +20,11 @@ export const queryKeys = {
         },
       };
     },
+  },
+  textSelection: () => {
+    return {
+      queryKey: ["textSelection"],
+      queryFn: getTextSelection,
+    };
   },
 };
