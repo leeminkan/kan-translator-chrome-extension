@@ -7,7 +7,7 @@ export const getSelectedPosition = () => {
     : window.getSelection().getRangeAt(0).getBoundingClientRect();
 
   let selectedPosition;
-  const panelReferencePoint = "bottomSelectedText" as string;
+  const panelReferencePoint = "topSelectedText" as string;
   switch (panelReferencePoint) {
     case "topSelectedText":
       selectedPosition = {
