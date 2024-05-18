@@ -1,5 +1,5 @@
 import React from "react";
-import { Plus } from "lucide-react";
+import { Plus, BookmarkCheck } from "lucide-react";
 
 import {
   Tooltip,
@@ -9,8 +9,24 @@ import {
 } from "@/src/components/ui/tooltip";
 import { Button, ButtonProps } from "@/src/components/ui/button";
 
-export function AddButtonIcon(props: ButtonProps) {
-  return (
+export function AddButtonIcon({
+  isSaved,
+  ...props
+}: ButtonProps & {
+  isSaved?: boolean;
+}) {
+  return isSaved ? (
+    <TooltipProvider delayDuration={0} disableHoverableContent={true}>
+      <Tooltip>
+        <TooltipTrigger asChild={true}>
+          <BookmarkCheck className="h-4 w-4" />
+        </TooltipTrigger>
+        <TooltipContent side="left" hideWhenDetached={true}>
+          Saved
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  ) : (
     <TooltipProvider delayDuration={0} disableHoverableContent={true}>
       <Tooltip>
         <TooltipTrigger asChild={true}>

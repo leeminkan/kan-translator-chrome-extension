@@ -1,48 +1,56 @@
-import React from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import React, { useCallback, useEffect, useMemo } from "react";
 
-import { Input } from "@/src/components/ui/input";
 import { useGoogleTranslatorMutation } from "@/src/mutation/useGoogleTranslatorMutation";
 import { useCustomTranslatorMutation } from "@/src/mutation/useCustomTranslatorMutation";
-import { useWordBank } from "@/src/hooks/useWordBank";
 import { useIsWordSaved } from "@/src/queries/useWordBankQueries";
+import { useWordBank } from "@/src/hooks/useWordBank";
 
-import { AddButtonIcon } from "./AddButtonIcon";
-import { PronunciationRow } from "./PronunciationRow";
-import { ResultSkeleton } from "./ResultSkeleton";
-import { Inputs } from "../../popup.types";
+import { AddButtonIcon } from "../../popup/component/TranslateTab/AddButtonIcon";
+import { PronunciationRow } from "../../popup/component/TranslateTab/PronunciationRow";
+import { ResultSkeleton } from "../../popup/component/TranslateTab/ResultSkeleton";
 
-export const TranslateTab = () => {
-  const { register, handleSubmit } = useForm<Inputs>();
+export const TranslatePanel = ({ sourceText }) => {
   const { addNewWord } = useWordBank();
-
   const googleTranslatorMutation = useGoogleTranslatorMutation();
   const customTranslatorMutation = useCustomTranslatorMutation();
+  const isWordSavedQuery = useIsWordSaved(sourceText);
 
-  const isWordSavedQuery = useIsWordSaved(
-    googleTranslatorMutation.data?.sourceText ?? ""
-  );
-
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    await Promise.all([
+  useEffect(() => {
+    Promise.all([
       customTranslatorMutation.mutateAsync({
-        sourceText: data.text,
+        sourceText,
       }),
       googleTranslatorMutation.mutateAsync({
-        sourceText: data.text,
+        sourceText,
       }),
     ]);
-  };
+  }, []);
+
+  const addNewWordFn = useCallback(async () => {
+    addNewWord({
+      sourceText: googleTranslatorMutation.data.sourceText,
+      translatedText: googleTranslatorMutation.data.translatedText,
+    });
+  }, [googleTranslatorMutation]);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "s") {
+        // quick save
+        e.preventDefault();
+        addNewWordFn();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [sourceText, addNewWord]);
 
   return (
     <div className="flex flex-col px-2 py-2">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          autoFocus
-          {...register("text")}
-          placeholder="Enter text to translate..."
-        />
-      </form>
       {googleTranslatorMutation.isPending && <ResultSkeleton />}
       {googleTranslatorMutation.data && (
         <div className="flex flex-col mt-2 px-2 py-2 bg-white gap-2">
@@ -60,13 +68,7 @@ export const TranslateTab = () => {
             {!isWordSavedQuery.isPending && (
               <AddButtonIcon
                 className="h-6 w-6"
-                onClick={() => {
-                  addNewWord({
-                    sourceText: googleTranslatorMutation.data.sourceText,
-                    translatedText:
-                      googleTranslatorMutation.data.translatedText,
-                  });
-                }}
+                onClick={addNewWordFn}
                 isSaved={isWordSavedQuery.data}
               />
             )}

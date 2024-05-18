@@ -12,10 +12,9 @@
         "newtab": "newTab.html"
     },
     "permissions": [
-        "tabs",
-        "bookmarks",
         "storage",
-        "identity"
+        "activeTab",
+        "contextMenus"
     ],
     "icons": {
         "16": "icon.png",
@@ -31,6 +30,7 @@
             "matches": [
                 "<all_urls>"
             ],
+            "run_at": "document_end",
             "js": [
                 "contentScript.js"
             ]

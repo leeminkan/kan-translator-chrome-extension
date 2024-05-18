@@ -1,5 +1,13 @@
-chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
-    console.log(msg);
-    console.log(sender);
-    sendResponse("Front the background Script");
-})
+// Create context menu option
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.contextMenus.create({
+    id: "kan-translate-menu",
+    title: "Kan Translate",
+    contexts: ["selection"],
+  });
+});
+
+// Respond to translation requests
+chrome.contextMenus.onClicked.addListener(async (info, tabs) => {
+  chrome.tabs.sendMessage(tabs.id, {});
+});

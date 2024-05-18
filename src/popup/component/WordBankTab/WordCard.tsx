@@ -1,5 +1,4 @@
 import React from "react";
-import { useQueryClient } from "@tanstack/react-query";
 
 import {
   Card,
@@ -7,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/src/components/ui/card";
-import { wordBankStorage } from "@/src/services/wordBankStorage";
+import { useWordBank } from "@/src/hooks/useWordBank";
 
 import { RemoveButtonIcon } from "./RemoveButtonIcon";
 
@@ -18,7 +17,7 @@ export function WordCard({
   sourceText: string;
   translatedTextList: string[];
 }) {
-  const queryClient = useQueryClient();
+  const { removeWord } = useWordBank();
   return (
     <Card>
       <CardHeader className="relative">
@@ -26,11 +25,8 @@ export function WordCard({
         <CardDescription>{translatedTextList.join(", ")}</CardDescription>
         <RemoveButtonIcon
           className="absolute top-0 right-2"
-          onClick={async () => {
-            await wordBankStorage.removeWord({ sourceText });
-            queryClient.invalidateQueries({
-              queryKey: [wordBankStorage._key],
-            });
+          onClick={() => {
+            removeWord({ sourceText });
           }}
         />
       </CardHeader>

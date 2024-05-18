@@ -10,7 +10,7 @@ module.exports = {
     popup: path.resolve("src/popup/index.tsx"),
     options: path.resolve("src/options/index.tsx"),
     background: path.resolve("src/background/background.ts"),
-    contentScript: path.resolve("src/contentScript/contentScript.ts"),
+    contentScript: path.resolve("src/contentScript/index.tsx"),
     newTab: path.resolve("src/tabs/index.tsx"),
   },
   module: {
@@ -22,22 +22,13 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: [
-          "style-loader",
+        oneOf: [
           {
-            loader: "css-loader",
-            options: {
-              importLoaders: 1,
-            },
+            resourceQuery: /inline/, // foo.css?inline
+            use: getCssRuleUses("inline"),
           },
           {
-            loader: "postcss-loader", // postcss loader needed for tailwindcss
-            options: {
-              postcssOptions: {
-                ident: "postcss",
-                plugins: [tailwindcss, autoprefixer],
-              },
-            },
+            use: getCssRuleUses(),
           },
         ],
       },
@@ -59,10 +50,10 @@ module.exports = {
         },
       ],
     }),
-    ...getHtmlPlugins(["popup", "options", "newTab"]),
+    ...getHtmlPlugins(["popup", "options", "newTab", "contentScript"]),
   ],
   resolve: {
-    extensions: [".tsx", ".js", ".ts"],
+    extensions: [".tsx", ".js", ".ts", ".css"],
     alias: {
       "@": path.resolve(__dirname, "./"),
     },
@@ -73,7 +64,9 @@ module.exports = {
   },
   optimization: {
     splitChunks: {
-      chunks: "all",
+      chunks(chunk) {
+        return chunk.name !== "contentScript";
+      },
     },
   },
 };
@@ -87,4 +80,25 @@ function getHtmlPlugins(chunks) {
         chunks: [chunk],
       })
   );
+}
+
+function getCssRuleUses(type) {
+  return [
+    type === "inline" ? "to-string-loader" : "style-loader",
+    {
+      loader: "css-loader",
+      options: {
+        importLoaders: 1,
+      },
+    },
+    {
+      loader: "postcss-loader", // postcss loader needed for tailwindcss
+      options: {
+        postcssOptions: {
+          ident: "postcss",
+          plugins: [tailwindcss, autoprefixer],
+        },
+      },
+    },
+  ];
 }

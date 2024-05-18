@@ -65,6 +65,15 @@ class WordBankStorage extends ChromeStorage {
       new Date(a.createdAt) < new Date(b.createdAt) ? 1 : -1
     );
   }
+
+  async findWord(text: string): Promise<SavedWord> {
+    const allWords = await this.getAll();
+    return allWords.find((item) => item.sourceText === text);
+  }
+
+  async isSaved(text: string) {
+    return !!(await this.findWord(text));
+  }
 }
 
 export const wordBankStorage = new WordBankStorage();

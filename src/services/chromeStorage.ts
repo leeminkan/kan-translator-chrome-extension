@@ -4,6 +4,9 @@ export class ChromeStorage {
   _area: AreaName;
 
   constructor(area: AreaName) {
+    if (!["sync", "local", "managed"].includes(area))
+      throw new Error(`Invalid area ${area}`);
+
     this._area = area;
   }
 

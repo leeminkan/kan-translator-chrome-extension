@@ -1,3 +1,9 @@
+/* We can prevent the values of properties form being inherited by using the initial value.
+https://stackoverflow.com/questions/49709676/light-dom-style-leaking-into-shadow-dom */
+#kan__translator__extension__shadow {
+    all: initial;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
