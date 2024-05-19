@@ -16,10 +16,11 @@ class WordBankStorage extends ChromeStorage {
     sourceText: string;
     translatedText: string;
   }) {
+    const lowerCaseSourceText = sourceText.toLowerCase();
     const currentSavedWords = (await this.get(this._key, [])) as SavedWord[];
 
     const existed = currentSavedWords.find(
-      (item) => item.sourceText === sourceText
+      (item) => item.sourceText === lowerCaseSourceText
     );
 
     if (existed) {
@@ -32,7 +33,7 @@ class WordBankStorage extends ChromeStorage {
     }
 
     const word = {
-      sourceText: sourceText,
+      sourceText: lowerCaseSourceText,
       translatedTextList: [translatedText],
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
@@ -43,16 +44,19 @@ class WordBankStorage extends ChromeStorage {
   }
 
   async removeWord({ sourceText }: { sourceText: string }) {
+    const lowerCaseSourceText = sourceText.toLowerCase();
     const currentSavedWords = (await this.get(this._key, [])) as SavedWord[];
 
     const existed = currentSavedWords.find(
-      (item) => item.sourceText === sourceText
+      (item) => item.sourceText === lowerCaseSourceText
     );
 
     if (existed) {
       this.set(
         this._key,
-        currentSavedWords.filter((word) => word.sourceText !== sourceText)
+        currentSavedWords.filter(
+          (word) => word.sourceText !== lowerCaseSourceText
+        )
       );
     }
   }
@@ -68,11 +72,11 @@ class WordBankStorage extends ChromeStorage {
 
   async findWord(text: string): Promise<SavedWord> {
     const allWords = await this.getAll();
-    return allWords.find((item) => item.sourceText === text);
+    return allWords.find((item) => item.sourceText === text.toLowerCase());
   }
 
   async isSaved(text: string) {
-    return !!(await this.findWord(text));
+    return !!(await this.findWord(text.toLowerCase()));
   }
 }
 
