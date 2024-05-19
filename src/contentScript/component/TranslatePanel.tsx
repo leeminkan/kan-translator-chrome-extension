@@ -24,7 +24,7 @@ export const TranslatePanel = ({ sourceText }) => {
         sourceText,
       }),
     ]);
-  }, []);
+  }, [sourceText]);
 
   const addNewWordFn = useCallback(async () => {
     addNewWord({

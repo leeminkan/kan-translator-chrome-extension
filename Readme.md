@@ -16,6 +16,7 @@ chrome-extension://abdkegfbdliahgcdgfgfaedmoghihheb/popup.html
 - [x] Implement translation feature
 - [x] Implement "save vocabulary" feature
 - [x] Implement "translate selection text" feature
+- [x] Implement "draggable translation panel" feature
 - [ ] Enhance popup with more information
 
 ## Dev tools

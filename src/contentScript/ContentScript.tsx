@@ -1,4 +1,4 @@
-import React, { CSSProperties, useCallback, useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { useGoogleTranslatorMutation } from "@/src/mutation/useGoogleTranslatorMutation";
 import { useCustomTranslatorMutation } from "@/src/mutation/useCustomTranslatorMutation";
@@ -9,25 +9,44 @@ import { getSelectedPosition } from "./getSelectedPosition";
 import { getSelectedText } from "./getSelectedText";
 
 export function ContentScript() {
-  const [showType, setShowType] = useState<null | "icon" | "panel">(null);
-  const [displayInfo, setDisplayInfo] = useState<{
+  const [showIcon, setShowIcon] = useState(false);
+  const [showPanel, setShowPanel] = useState(false);
+  const [panelDragging, setPanelDragging] = useState(false);
+  const [panelDisplayInfo, setPanelDisplayInfo] = useState<{
     left: number;
     top: number;
-  }>(null);
+    isFixed: boolean;
+  }>({
+    left: 0,
+    top: 0,
+    isFixed: false,
+  });
+  const [iconDisplayInfo, setIconDisplayInfo] = useState<{
+    left: number;
+    top: number;
+  }>({
+    left: 0,
+    top: 0,
+  });
   const [sourceText, setSourceText] = useState();
   const googleTranslatorMutation = useGoogleTranslatorMutation();
   const customTranslatorMutation = useCustomTranslatorMutation();
+  const panelRef = useRef(null);
 
   useEffect(() => {
     const messageHandler = () => {
       const position = getSelectedPosition();
-      setShowType("panel");
-      // https://stackoverflow.com/questions/25630035/javascript-getboundingclientrect-changes-while-scrolling
-      setDisplayInfo({
-        top: position.y + window.scrollY,
-        left: position.x + window.scrollX,
-      });
+      setShowPanel(true);
+      setShowIcon(false);
       setSourceText(getSelectedText());
+      if (!panelDisplayInfo.isFixed) {
+        // https://stackoverflow.com/questions/25630035/javascript-getboundingclientrect-changes-while-scrolling
+        setPanelDisplayInfo({
+          top: position.y + window.scrollY,
+          left: position.x + window.scrollX,
+          isFixed: false,
+        });
+      }
     };
     const handleMouseUp = (e) => {
       const isLeftClick = e.button === 0;
@@ -51,10 +70,18 @@ export function ContentScript() {
 
       const selectedText = getSelectedText();
       if (selectedText.length === 0) {
-        if (showType) {
+        if (showIcon || showPanel) {
           // when user click outside the popup, close popup/icon
-          setShowType(null);
-          setDisplayInfo({
+          if (!panelDisplayInfo.isFixed) {
+            setShowPanel(false);
+            setPanelDisplayInfo({
+              top: 0,
+              left: 0,
+              isFixed: false,
+            });
+          }
+          setShowIcon(false);
+          setIconDisplayInfo({
             top: 0,
             left: 0,
           });
@@ -63,18 +90,31 @@ export function ContentScript() {
       }
 
       const selectedPosition = getSelectedPosition();
-      setSourceText(getSelectedText());
-      setDisplayInfo({
+      setIconDisplayInfo({
         top: selectedPosition.y + window.scrollY,
         left: selectedPosition.x + window.scrollX,
       });
-      setShowType("icon");
+      setShowIcon(true);
+      if (!panelDisplayInfo.isFixed) {
+        setShowPanel(false);
+        setPanelDisplayInfo({
+          top: selectedPosition.y + window.scrollY,
+          left: selectedPosition.x + window.scrollX,
+          isFixed: false,
+        });
+      }
     };
     const handleKeyDown = (e) => {
       // close popup/icon
-      if (e.key === "Escape" && showType) {
-        setShowType(null);
-        setDisplayInfo({
+      if (e.key === "Escape" && (showIcon || showPanel)) {
+        setShowPanel(false);
+        setPanelDisplayInfo({
+          top: 0,
+          left: 0,
+          isFixed: false,
+        });
+        setShowIcon(false);
+        setIconDisplayInfo({
           top: 0,
           left: 0,
         });
@@ -86,11 +126,19 @@ export function ContentScript() {
         // quick translate
         e.preventDefault();
         setSourceText(getSelectedText());
-        setDisplayInfo({
-          top: selectedPosition.y + window.scrollY,
-          left: selectedPosition.x + window.scrollX,
+        setShowIcon(false);
+        setIconDisplayInfo({
+          top: 0,
+          left: 0,
         });
-        setShowType("panel");
+        setShowPanel(true);
+        if (!panelDisplayInfo.isFixed) {
+          setPanelDisplayInfo({
+            top: selectedPosition.y + window.scrollY,
+            left: selectedPosition.x + window.scrollX,
+            isFixed: false,
+          });
+        }
       }
     };
 
@@ -104,36 +152,77 @@ export function ContentScript() {
       document.removeEventListener("mouseup", handleMouseUp);
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [showType]);
+  }, [showIcon, showPanel, panelDisplayInfo.isFixed]);
 
-  const styleObject: CSSProperties = {
-    position: "absolute",
-    // transform: "translate(-50%, -50%)",
-    ...(displayInfo && {
-      left: displayInfo.left,
-      top: displayInfo.top,
-    }),
+  const handleDragStart = (e) => {
+    e.preventDefault();
+    const rect = panelRef.current.getBoundingClientRect();
+    const offsetX = e.clientX - rect.left;
+    const offsetY = e.clientY - rect.top;
+
+    const handleMouseMove = (e) => {
+      setPanelDragging(true);
+      const newX = e.clientX - offsetX;
+      const newY = e.clientY - offsetY;
+      setPanelDisplayInfo({
+        left: newX,
+        top: newY,
+        isFixed: true,
+      });
+    };
+
+    const handleMouseUp = () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+      setPanelDragging(false);
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
   };
 
+  const draggingClassName = panelDragging
+    ? "border-solid border-2 border-orange-500 cursor-grabbing"
+    : "";
+
   return (
-    showType && (
-      <div
-        id="content-script"
-        className="flex items-center justify-center z-50"
-        style={styleObject}
-      >
-        {showType === "panel" ? (
+    (showIcon || showPanel) && (
+      <div id="content-script">
+        {showPanel && (
           <div
-            className="flex flex-col bg-orange-100 rounded-md"
-            style={{ width: "400px" }}
+            id="content-script-panel"
+            className={`flex flex-col bg-orange-100 rounded-md z-50 ${draggingClassName}`}
+            ref={panelRef}
+            onMouseDown={(e) => handleDragStart(e)}
+            style={{
+              width: "400px",
+              position: panelDisplayInfo.isFixed ? "fixed" : "absolute",
+              left: panelDisplayInfo.left,
+              top: panelDisplayInfo.top,
+            }}
           >
             {sourceText && <TranslatePanel sourceText={sourceText} />}
           </div>
-        ) : (
-          <div>
+        )}
+        {showIcon && (
+          <div
+            id="content-script-icon"
+            className="z-50"
+            style={{
+              position: "absolute",
+              left: iconDisplayInfo.left,
+              top: iconDisplayInfo.top,
+            }}
+          >
             <TranslateButtonIcon
               onClick={async () => {
-                setShowType("panel");
+                setShowIcon(false);
+                setSourceText(getSelectedText());
+                setIconDisplayInfo({
+                  top: 0,
+                  left: 0,
+                });
+                setShowPanel(true);
                 await Promise.all([
                   customTranslatorMutation.mutateAsync({
                     sourceText,
