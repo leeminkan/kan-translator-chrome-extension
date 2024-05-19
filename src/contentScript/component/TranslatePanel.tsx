@@ -50,10 +50,10 @@ export const TranslatePanel = ({ sourceText }) => {
   }, [sourceText, addNewWord]);
 
   return (
-    <div className="flex flex-col px-2 py-2">
+    <div className="flex flex-col px-2 pb-2">
       {googleTranslatorMutation.isPending && <ResultSkeleton />}
       {googleTranslatorMutation.data && (
-        <div className="flex flex-col mt-2 px-2 py-2 text-black bg-white gap-2">
+        <div className="flex flex-col px-2 py-2 text-black bg-white gap-2">
           <h2 className="text-2xl">
             {googleTranslatorMutation.data.sourceText}
           </h2>

@@ -4,6 +4,7 @@ import { useGoogleTranslatorMutation } from "@/src/mutation/useGoogleTranslatorM
 import { useCustomTranslatorMutation } from "@/src/mutation/useCustomTranslatorMutation";
 
 import { TranslatePanel } from "./component/TranslatePanel";
+import { CloseButtonIcon } from "./component/CloseButtonIcon";
 import { TranslateButtonIcon } from "./component/TranslateButtonIcon";
 import { getSelectedPosition } from "./getSelectedPosition";
 import { getSelectedText } from "./getSelectedText";
@@ -32,6 +33,20 @@ export function ContentScript() {
   const googleTranslatorMutation = useGoogleTranslatorMutation();
   const customTranslatorMutation = useCustomTranslatorMutation();
   const panelRef = useRef(null);
+
+  const closeContentScript = () => {
+    setShowPanel(false);
+    setPanelDisplayInfo({
+      top: 0,
+      left: 0,
+      isFixed: false,
+    });
+    setShowIcon(false);
+    setIconDisplayInfo({
+      top: 0,
+      left: 0,
+    });
+  };
 
   useEffect(() => {
     const messageHandler = () => {
@@ -107,17 +122,7 @@ export function ContentScript() {
     const handleKeyDown = (e) => {
       // close popup/icon
       if (e.key === "Escape" && (showIcon || showPanel)) {
-        setShowPanel(false);
-        setPanelDisplayInfo({
-          top: 0,
-          left: 0,
-          isFixed: false,
-        });
-        setShowIcon(false);
-        setIconDisplayInfo({
-          top: 0,
-          left: 0,
-        });
+        closeContentScript();
       } else if (e.key === " " || e.code == "Space" || e.keyCode == 32) {
         const selectedText = getSelectedText();
         if (!selectedText) return;
@@ -201,6 +206,11 @@ export function ContentScript() {
               top: panelDisplayInfo.top,
             }}
           >
+            <div className="flex justify-end">
+              <div className="my-2 mr-2">
+                <CloseButtonIcon onClick={() => closeContentScript()} />
+              </div>
+            </div>
             {sourceText && <TranslatePanel sourceText={sourceText} />}
           </div>
         )}
