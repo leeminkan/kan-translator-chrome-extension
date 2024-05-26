@@ -11,3 +11,11 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.contextMenus.onClicked.addListener(async (info, tabs) => {
   chrome.tabs.sendMessage(tabs.id, {});
 });
+
+// @ts-ignore
+chrome.offscreen.createDocument({
+  // @ts-ignore
+  reasons: [chrome.offscreen.Reason.AUDIO_PLAYBACK],
+  url: "offscreen.html",
+  justification: "play audio", // details for using the API
+});

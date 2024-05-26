@@ -15,7 +15,8 @@
         "storage",
         "scripting",
         "activeTab",
-        "contextMenus"
+        "contextMenus",
+        "offscreen"
     ],
     "icons": {
         "16": "icon.png",

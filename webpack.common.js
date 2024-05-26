@@ -12,6 +12,7 @@ module.exports = {
     background: path.resolve("src/background/background.ts"),
     contentScript: path.resolve("src/contentScript/index.tsx"),
     newTab: path.resolve("src/tabs/index.tsx"),
+    offscreen: path.resolve("src/offscreen/index.ts"),
   },
   module: {
     rules: [
@@ -50,7 +51,13 @@ module.exports = {
         },
       ],
     }),
-    ...getHtmlPlugins(["popup", "options", "newTab", "contentScript"]),
+    ...getHtmlPlugins([
+      "popup",
+      "options",
+      "newTab",
+      "contentScript",
+      "offscreen",
+    ]),
   ],
   resolve: {
     extensions: [".tsx", ".js", ".ts", ".css"],
