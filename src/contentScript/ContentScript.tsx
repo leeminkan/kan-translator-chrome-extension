@@ -198,7 +198,6 @@ export function ContentScript() {
             id="content-script-panel"
             className={`flex flex-col bg-orange-100 rounded-md z-50 ${draggingClassName}`}
             ref={panelRef}
-            onMouseDown={(e) => handleDragStart(e)}
             style={{
               width: "400px",
               position: panelDisplayInfo.isFixed ? "fixed" : "absolute",
@@ -206,7 +205,10 @@ export function ContentScript() {
               top: panelDisplayInfo.top,
             }}
           >
-            <div className="flex justify-end">
+            <div
+              className="flex justify-end"
+              onMouseDown={(e) => handleDragStart(e)}
+            >
               <div className="my-2 mr-2">
                 <CloseButtonIcon onClick={() => closeContentScript()} />
               </div>
