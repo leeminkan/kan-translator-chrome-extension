@@ -1,10 +1,10 @@
 # My Translator Chrome Extension
 
-- Frustrated by the limitations of existing translator extensions, especially when it came to learning new vocabulary, I created this app to address those shortcomings. This app empowers you to:
+Frustrated by the limitations of existing translator extensions, especially when it came to learning new vocabulary, I created this app to address those shortcomings. This app empowers you to:
 
-* Translate words effortlessly
-* Save words for future review and learning
-* Enjoy a user-friendly, draggable interface for seamless integration into your browsing experience
+- Translate words effortlessly
+- Save words for future review and learning
+- Enjoy a user-friendly, draggable interface for seamless integration into your browsing experience
 
 ## Preview
 
