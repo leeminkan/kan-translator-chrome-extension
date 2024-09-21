@@ -7,7 +7,7 @@ import {
   eventAction,
   PlaySoundMessagePayload,
   PlaySoundEventResult,
-} from "@/src/offscreen/type";
+} from "@/src/app/offscreen/type";
 
 export const Audio = ({ url }: { url: string }) => {
   const [playingInOffscreen, setPlayingInOffscreen] = useState(false);

@@ -7,12 +7,12 @@ const autoprefixer = require("autoprefixer");
 
 module.exports = {
   entry: {
-    popup: path.resolve("src/popup/index.tsx"),
-    options: path.resolve("src/options/index.tsx"),
-    background: path.resolve("src/background/background.ts"),
-    contentScript: path.resolve("src/contentScript/index.tsx"),
-    newTab: path.resolve("src/tabs/index.tsx"),
-    offscreen: path.resolve("src/offscreen/index.ts"),
+    popup: path.resolve("src/app/popup/index.tsx"),
+    options: path.resolve("src/app/options/index.tsx"),
+    background: path.resolve("src/app/background/background.ts"),
+    contentScript: path.resolve("src/app/contentScript/index.tsx"),
+    newTab: path.resolve("src/app/tabs/index.tsx"),
+    offscreen: path.resolve("src/app/offscreen/index.ts"),
   },
   module: {
     rules: [
@@ -46,7 +46,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          from: path.resolve("src/static"),
+          from: path.resolve("src/app/static"),
           to: path.resolve("dist"),
         },
       ],
